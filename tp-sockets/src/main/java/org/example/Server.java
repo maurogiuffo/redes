@@ -52,10 +52,9 @@ public class Server {
                 System.out.println("cliente conectado");
                 System.out.println("ingrese mensaje + enter, x + enter para desconectar");
 
-                while ((inputLine = in.readLine()) != null) {
+                while ((inputLine = in.readLine()) != null ) {
                     if (closeConnectionCharacter.equals(inputLine)) {
                         System.out.println("el cliente termino la conexion");
-
                         //mando saludo al cliente
                         out.println("bye");
                         break;
@@ -74,6 +73,8 @@ public class Server {
                     }
 
                     out.println(message);
+
+                    System.out.println("esperando cliente");
                 }
 
                 in.close();

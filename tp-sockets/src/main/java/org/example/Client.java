@@ -8,15 +8,19 @@ public class Client {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
+    private static String closeConnectionCharacter= "x";
 
-    public void startConnection(String ip, int port) {
+    public boolean startConnection(String ip, int port) {
         try {
             clientSocket = new Socket(ip, port);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            return true;
         } catch (IOException e) {
+            System.out.println("No se pudo conectar. " + e.getMessage());
         }
 
+        return false;
     }
 
     public String sendMessage(String msg) {
@@ -38,16 +42,20 @@ public class Client {
 
     }
 
-    private static String closeConnectionCharacter= "x";
+
 
     public static void main(String[] args) throws IOException
     {
-        Client client = new Client();
-        client.startConnection("127.0.0.1", 3000);
 
         BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
-
         String message="";
+
+        Client client = new Client();
+
+        if(!client.startConnection("127.0.0.1", 3000))
+            return;
+
+
         System.out.println("ingrese mensaje + enter, x + enter para desconectar");
         while((message = keyboardReader.readLine()) != null)
         {
