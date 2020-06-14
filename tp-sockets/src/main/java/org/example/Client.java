@@ -27,6 +27,7 @@ public class Client {
     public String sendMessage(String msg) {
         try {
             out.println(msg);
+            System.out.println("Esperando respuesta del Servidor");
             return in.readLine();
         } catch (Exception e) {
             System.out.println(e.getMessage());

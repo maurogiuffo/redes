@@ -67,14 +67,13 @@ public class Server {
                     message = keyboardReader.readLine();
 
                     if (closeConnectionCharacter.equals(message)) {
-                        //System.out.println("el servidor termino la conexion");
                         out.println(message);
                         break;
                     }
 
                     out.println(message);
 
-                    System.out.println("esperando cliente");
+                    System.out.println("Esperando respuesta del Cliente");
                 }
 
                 in.close();

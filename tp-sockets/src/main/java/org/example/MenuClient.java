@@ -75,7 +75,7 @@ public class MenuClient {
                 } catch (Exception e) {
                     port = 0;
                 }
-                connectionStatus = client.startConnection(ip, port);
+                connectionStatus = client.startConnection("127.0.0.1", 3000);
                 if(connectionStatus == true){
                     flag = false;
                 }else{
