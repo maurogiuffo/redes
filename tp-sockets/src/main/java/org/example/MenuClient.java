@@ -34,7 +34,10 @@ public class MenuClient {
                     connectionStatus = false;
                     break;
                 case 1:
-                    connectionStatus = getConnection(keyboardReader);
+                    if(connectionStatus == true){
+                        client.stopConnection();
+                    }
+                    connectionStatus = getConnection();
                     break;
                 case 2:
                     if(connectionStatus==true){
@@ -51,10 +54,14 @@ public class MenuClient {
             }
         }while ((x!=0));
         System.out.println("Saliendo de la Aplicacion...");
+        if(connectionStatus == true){
+            client.stopConnection();
+        }
         Thread.sleep(2*1000);
     }
 
-    public boolean getConnection(BufferedReader keyboardReader){
+    public boolean getConnection(){
+        BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
         boolean connectionStatus = false;
         boolean flag = true;
         try{
