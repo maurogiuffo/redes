@@ -11,16 +11,17 @@ public class Client {
     private static String closeConnectionCharacter= "x";
 
     public boolean startConnection(String ip, int port) {
+        boolean result = true;
         try {
             clientSocket = new Socket(ip, port);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            return true;
         } catch (IOException e) {
             System.out.println("No se pudo conectar. " + e.getMessage());
+            result = false;
         }
 
-        return false;
+        return result;
     }
 
     public String sendMessage(String msg) {
@@ -28,6 +29,7 @@ public class Client {
             out.println(msg);
             return in.readLine();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -38,41 +40,37 @@ public class Client {
             out.close();
             clientSocket.close();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-
     }
 
-
-
-    public static void main(String[] args) throws IOException
-    {
-
+    public void chat() throws IOException {
+        boolean connectionStatus = true;
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
-        String message="";
-
-        Client client = new Client();
-
-        if(!client.startConnection("127.0.0.1", 3000))
-            return;
-
-
-        System.out.println("ingrese mensaje + enter, x + enter para desconectar");
-        while((message = keyboardReader.readLine()) != null)
+        System.out.println("Escribe mensaje y envialo al servidor con Enter o escribe 'x' para finalizar la conexion");
+        while(connectionStatus)
         {
-            System.out.println(message);
-            String messageFromserver= client.sendMessage(message);
-
-            if (closeConnectionCharacter.equals(messageFromserver)) {
-                System.out.println("el servidor termino la conexion");
-                break;
+            System.out.println("Mensaje a enviar:");
+            String message = keyboardReader.readLine();
+            if(closeConnectionCharacter.equals(message)){
+                System.out.println("Finalizando conexion...");
+                connectionStatus = false;
             }
-            System.out.println("el servidor dice: "+ messageFromserver);
-            if (closeConnectionCharacter.equals(message)) {
-                break;
+            else {
+                String messageFromserver= this.sendMessage(message);
+                System.out.println("Cliente : " + message);
+
+                if (closeConnectionCharacter.equals(messageFromserver)) {
+                    System.out.println("el servidor termino la conexion");
+                    connectionStatus = false;
+                }
+                else {
+                    System.out.println("Servidor: "+ messageFromserver);
+                }
             }
         }
-        client.stopConnection();
+        this.stopConnection();
     }
-
-
 }
