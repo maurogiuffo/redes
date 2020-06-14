@@ -97,47 +97,4 @@ public class Server {
         Server server = new Server();
         server.start(serverPort);
     }
-
 }
-
-
-
-
-
-
-/*
-
- class Server2 {
-
-
-    public static void main(String[] args) {
-        ServerSocket serverSocket = null;
-        Socket clientSocket = null;
-        int port = 3000;
-        DataInputStream dataInputStream;
-        DataOutputStream dataOutputStream;
-        try {
-            // se inicia el servidor
-            serverSocket = new ServerSocket(port);
-
-            while(true)
-            {
-                //espera
-                clientSocket = serverSocket.accept();
-                dataInputStream = new DataInputStream(clientSocket.getInputStream());
-                dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
-
-                String message= dataInputStream.readUTF();
-
-
-            }
-        }
-        catch (Exception e)
-        {
-        }
-
-
-
-
-    }
-}*/
