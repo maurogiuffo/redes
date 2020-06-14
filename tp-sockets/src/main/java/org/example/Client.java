@@ -59,17 +59,15 @@ public class Client {
                 System.out.println("Finalizando conexion...");
                 connectionStatus = false;
             }
-            else {
-                String messageFromserver= this.sendMessage(message);
-                System.out.println("Cliente : " + message);
+            System.out.println("Cliente : " + message);
+            String messageFromserver= this.sendMessage(message);
 
-                if (closeConnectionCharacter.equals(messageFromserver)) {
-                    System.out.println("el servidor termino la conexion");
-                    connectionStatus = false;
-                }
-                else {
-                    System.out.println("Servidor: "+ messageFromserver);
-                }
+            if (closeConnectionCharacter.equals(messageFromserver)) {
+                System.out.println("el servidor termino la conexion");
+                connectionStatus = false;
+            }
+            else {
+                System.out.println("Servidor: "+ messageFromserver);
             }
         }
         this.stopConnection();
