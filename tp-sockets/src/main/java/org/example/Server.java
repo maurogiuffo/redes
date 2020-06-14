@@ -13,8 +13,14 @@ public class Server {
         System.out.println("servidor iniciado, esperando clientes");
         try {
             serverSocket = new ServerSocket(port);
-            while (true)
-                new ClientHandler(serverSocket.accept()).start();
+            Integer clientId = 1;
+
+            while (true){
+                new ClientHandler(serverSocket.accept(),clientId).start();
+                clientId++;
+            }
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,9 +44,11 @@ public class Server {
         private PrintWriter out;
         private BufferedReader in;
         private String closeConnectionCharacter= "x";
+        private Integer ClientId;
 
-        public ClientHandler(Socket socket) {
+        public ClientHandler(Socket socket, Integer id) {
             this.clientSocket = socket;
+            this.ClientId = id;
         }
 
         public void run() {
@@ -49,32 +57,31 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String inputLine;
 
-                System.out.println("cliente conectado");
-                System.out.println("ingrese mensaje + enter, x + enter para desconectar");
+                System.out.println("Cliente " + ClientId + " Conectado \n");
+                System.out.println("Escribe mensaje y envialo al Cliente con Enter o escribe 'x' para finalizar la conexion");
 
                 while ((inputLine = in.readLine()) != null ) {
                     if (closeConnectionCharacter.equals(inputLine)) {
-                        System.out.println("el cliente termino la conexion");
+                        System.out.println("Cliente " + ClientId +" termino la conexion");
                         //mando saludo al cliente
                         out.println("bye");
                         break;
                     }
 
-                    System.out.println("cliente dice : "+ inputLine);
+                    System.out.println("Cliente " + ClientId +" dice : "+ inputLine);
 
                     BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
                     String message="";
                     message = keyboardReader.readLine();
 
                     if (closeConnectionCharacter.equals(message)) {
-                        //System.out.println("el servidor termino la conexion");
                         out.println(message);
                         break;
                     }
 
                     out.println(message);
 
-                    System.out.println("esperando cliente");
+                    System.out.println("Esperando respuesta del Cliente");
                 }
 
                 in.close();
