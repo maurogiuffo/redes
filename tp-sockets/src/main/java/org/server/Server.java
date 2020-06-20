@@ -1,4 +1,4 @@
-package org.example;
+package Server;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -19,15 +19,11 @@ public class Server {
                 new ClientHandler(serverSocket.accept(),clientId).start();
                 clientId++;
             }
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             stop();
         }
-
     }
 
     public void stop() {
@@ -36,7 +32,6 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private static class ClientHandler extends Thread {
@@ -80,7 +75,6 @@ public class Server {
                     }
 
                     out.println(message);
-
                     System.out.println("Esperando respuesta del Cliente");
                 }
 
