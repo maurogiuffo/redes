@@ -1,4 +1,4 @@
-package Server;
+package org.server;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -52,8 +52,9 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String inputLine;
 
-                System.out.println("Cliente " + ClientId + " Conectado \n");
-                System.out.println("Escribe mensaje y envialo al Cliente con Enter o escribe 'x' para finalizar la conexion");
+                System.out.println("Cliente " + ClientId + " Conectado.\n");
+                System.out.println("Escriba mensaje y envielo al Cliente con Enter o escribe 'x' para finalizar la conexion");
+                System.out.println("Esperando mensaje");
 
                 while ((inputLine = in.readLine()) != null ) {
                     if (closeConnectionCharacter.equals(inputLine)) {
@@ -64,18 +65,18 @@ public class Server {
                     }
 
                     System.out.println("Cliente " + ClientId +" dice : "+ inputLine);
-
+                    System.out.println("Escriba mensaje para " + ClientId +": ");
                     BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
-                    String message="";
-                    message = keyboardReader.readLine();
+                    String message = keyboardReader.readLine();
 
                     if (closeConnectionCharacter.equals(message)) {
                         out.println(message);
+                        System.out.println("Cerrando conexion con cliente " + ClientId);
                         break;
                     }
 
                     out.println(message);
-                    System.out.println("Esperando respuesta del Cliente");
+                    System.out.println("Esperando respuesta del cliente " + ClientId);
                 }
 
                 in.close();

@@ -114,6 +114,7 @@ public class MenuClient {
                     tryConnect = false;
                 }
             }
+            inputError = false;
         }
 
         return connectionSuccess;
