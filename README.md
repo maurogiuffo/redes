@@ -1,12 +1,12 @@
 # Trabajo Practico Final - Redes
 
-## El proyecto esta dividido en 2 packages:
+### El proyecto esta dividido en 2 packages:
 
-### Main class aplicacion Cliente:
+**Main class aplicacion Cliente:**
 https://github.com/maurogiuffo/redes/blob/master/tp-sockets/src/main/java/org/client/MainClient.java
 
 
-### Main class aplicacion Servidor:
+**Main class aplicacion Servidor:**
 https://github.com/maurogiuffo/redes/blob/master/tp-sockets/src/main/java/org/server/Server.java
 
 
