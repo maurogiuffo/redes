@@ -53,21 +53,22 @@ public class Client {
         System.out.println("Escribe mensaje y envialo al servidor con Enter o escribe 'x' para finalizar la conexion");
         while(connectionStatus)
         {
-            System.out.println("Mensaje a enviar:");
+            System.out.println("Ingrese mensaje a enviar: ");
             String message = keyboardReader.readLine();
             if(closeConnectionCharacter.equals(message)){
                 System.out.println("Finalizando conexion...");
                 connectionStatus = false;
             }
-            System.out.println("Cliente : " + message);
+
+            System.out.println("Enviando mensaje a servidor: "+ message);
             String messageFromserver= this.sendMessage(message);
 
             if (closeConnectionCharacter.equals(messageFromserver)) {
-                System.out.println("el servidor termino la conexion");
+                System.out.println("El servidor termino la conexion");
                 connectionStatus = false;
             }
             else {
-                System.out.println("Servidor: "+ messageFromserver);
+                System.out.println("Servidor dice: "+ messageFromserver);
             }
         }
         this.stopConnection();

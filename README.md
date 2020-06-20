@@ -1,8 +1,21 @@
-# redes
+# Trabajo Practico Final - Redes
 
-Trabajo Practico Final - Redes
+## El proyecto esta dividido en 2 packages:
+
+### Main class aplicacion Cliente:
+https://github.com/maurogiuffo/redes/blob/master/tp-sockets/src/main/java/org/client/MainClient.java
+
+
+### Main class aplicacion Servidor:
+https://github.com/maurogiuffo/redes/blob/master/tp-sockets/src/main/java/org/server/Server.java
+
+
+
+
+### Trabajo Practico Final - Redes
 
 Crear un modelo cliente - servidor utilizando TCP/IP Sockets a partir de los siguientes puntos:
+
 1) Crear un servidor:
 a) Debe aceptar conexiones entrantes
 b) Usar el port number 3000
@@ -20,6 +33,7 @@ h) El servidor debe tener la funcionalidad de poder responderle al cliente.
 i) Si el usuario presiona ‘X’, se corta la conexión. La conexión se debe poder
 terminar tanto del lado del cliente como del servidor.
 
+
 2) Crear un cliente:
 
 a) Debe poder conectarse con un servidor por medio de la IP y el puerto. Dichos
@@ -31,7 +45,7 @@ c) Mostrar el estado de conexión paso a paso.
 d) El cliente debe poder tanto enviar como recibir data.
 
 
-Preguntas
+### Preguntas
 
 1. ¿Que es un puerto?
 2. ¿Como estan formados los endpoints?
@@ -43,7 +57,7 @@ Preguntas
 8. Diferencia entre sync & async sockets?
 
 
-Notas
+### Notas
 
 - Se puede utilizar cualquier lenguaje de programación. Recomiendo utilizar JAVA.
 - La aplicación debe ser de consola. Se debe loguear toda ejecución que se realice del

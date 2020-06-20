@@ -65,7 +65,7 @@ public class Server {
                     }
 
                     System.out.println("Cliente " + ClientId +" dice : "+ inputLine);
-                    System.out.println("Escriba mensaje para " + ClientId +": ");
+                    System.out.println("Escriba mensaje para cliente " + ClientId +": ");
                     BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
                     String message = keyboardReader.readLine();
 
@@ -75,6 +75,7 @@ public class Server {
                         break;
                     }
 
+                    System.out.println("Enviando mensaje a cliente " + ClientId +": "+ message);
                     out.println(message);
                     System.out.println("Esperando respuesta del cliente " + ClientId);
                 }
