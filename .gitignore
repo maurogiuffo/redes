@@ -11,7 +11,7 @@
 .resourceCache
 
 # Packaged files #
-*.jar
+tp-sockets/*.jar
 *.war
 *.ear
 
