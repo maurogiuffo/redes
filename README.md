@@ -1,6 +1,12 @@
 # Trabajo Practico Final - Redes
 
-### El proyecto esta dividido en 2 packages:
+### Builds
+
+En la carpeta builds se encuentran los ejecutables del servidor y cliente. Se pueden iniciar utilizando los archivos .bat que los acompañan.
+
+### Source code
+
+El proyecto esta dividido en 2 packages:
 
 **Main class aplicacion Cliente:**
 
